@@ -1,15 +1,13 @@
 package com.eduardoborges.ecommerce.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.eduardoborges.ecommerce.entity.enums.Role;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
@@ -17,7 +15,8 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-    private enum role {ROLE_USER, ROLE_ADMIN};
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User() {
     }
