@@ -10,6 +10,7 @@ import org.hibernate.annotations.CurrentTimestamp;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -22,7 +23,10 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private User client;
+    private User clientId;
+
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
+    private List<OrderItem> items;
 
     @CurrentTimestamp
     @Column(name = "order_date")
