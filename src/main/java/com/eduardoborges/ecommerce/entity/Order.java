@@ -26,12 +26,12 @@ public class Order {
 
     @CurrentTimestamp
     @Column(name = "order_date")
-    private Instant order_date;
+    private Instant orderDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
 
     @Column(name = "total_amount")
-    private BigDecimal total_amount;
+    private BigDecimal totalAmount;
 }
