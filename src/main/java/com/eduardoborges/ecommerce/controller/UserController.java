@@ -2,16 +2,18 @@ package com.eduardoborges.ecommerce.controller;
 
 import com.eduardoborges.ecommerce.dto.InsertUserDTO;
 import com.eduardoborges.ecommerce.dto.UserDTO;
+import com.eduardoborges.ecommerce.entity.User;
 import com.eduardoborges.ecommerce.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -28,10 +30,15 @@ public class UserController {
 
         var user = userService.getUserById(userId);
 
-        if (user.isPresent()){
+        if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         } else {
             return  ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/list")
+    public List<UserDTO> getUsersList(){
+        return userService.getUsersList();
     }
 }

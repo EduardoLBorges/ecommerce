@@ -5,11 +5,13 @@ import com.eduardoborges.ecommerce.dto.UserDTO;
 import com.eduardoborges.ecommerce.entity.User;
 import com.eduardoborges.ecommerce.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -33,6 +35,14 @@ public class UserService {
 
     public Optional<UserDTO> getUserById(Long userId){
 
-        return userRepository.findById(userId).map(UserDTO::new);
+        return userRepository.findById(userId).
+                map(UserDTO::new);
+    }
+
+    public List<UserDTO> getUsersList(){
+        return userRepository.findAll()
+                .stream().
+                map(UserDTO::new).
+                toList();
     }
 }
