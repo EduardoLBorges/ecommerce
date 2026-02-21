@@ -2,7 +2,6 @@ package com.eduardoborges.ecommerce.controller;
 
 import com.eduardoborges.ecommerce.dto.InsertUserDTO;
 import com.eduardoborges.ecommerce.dto.UserDTO;
-import com.eduardoborges.ecommerce.entity.User;
 import com.eduardoborges.ecommerce.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +41,15 @@ public class UserController {
     public List<UserDTO> getUsersList(){
 
         return userService.getUsersList();
+    }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<Void> updateUser(@PathVariable("userId") Long userId,
+                                           @RequestBody InsertUserDTO insertUserDTO){
+
+        userService.updateUser(userId, insertUserDTO);
+
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{userId}")

@@ -47,6 +47,25 @@ public class UserService {
                 toList();
     }
 
+    public void updateUser(Long userId,
+                           InsertUserDTO insertUserDTO){
+
+        var userEntity = userRepository.findById(userId);
+
+        if (userEntity.isPresent()){
+            var user = userEntity.get();
+
+            if (insertUserDTO.name() != null){
+                user.setName(insertUserDTO.name());
+            }
+            if (insertUserDTO.password() != null){
+                user.setPassword(insertUserDTO.password());
+            }
+
+            userRepository.save(user);
+        }
+    }
+
     public void deleteUserById(Long userId){
 
         userRepository.deleteById(userId);
