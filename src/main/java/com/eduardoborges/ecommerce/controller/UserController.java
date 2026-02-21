@@ -21,6 +21,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Long> createUser(@RequestBody InsertUserDTO insertUserDTO){
+
         var userId = userService.createUser(insertUserDTO);
         return ResponseEntity.created(URI.create("/users" + userId.toString())).build();
     }
@@ -39,6 +40,13 @@ public class UserController {
 
     @GetMapping("/list")
     public List<UserDTO> getUsersList(){
+
         return userService.getUsersList();
+    }
+
+    @DeleteMapping("/{userId}")
+    public void deleteById(@PathVariable("userId") Long userId){
+
+        userService.deleteUserById(userId);
     }
 }

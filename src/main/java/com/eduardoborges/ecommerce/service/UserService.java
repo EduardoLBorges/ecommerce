@@ -40,9 +40,15 @@ public class UserService {
     }
 
     public List<UserDTO> getUsersList(){
+
         return userRepository.findAll()
                 .stream().
                 map(UserDTO::new).
                 toList();
+    }
+
+    public void deleteUserById(Long userId){
+
+        userRepository.deleteById(userId);
     }
 }
