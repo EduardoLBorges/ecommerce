@@ -58,6 +58,7 @@ public class UserService {
             if (insertUserDTO.name() != null){
                 user.setName(insertUserDTO.name());
             }
+
             if (insertUserDTO.password() != null){
                 user.setPassword(insertUserDTO.password());
             }

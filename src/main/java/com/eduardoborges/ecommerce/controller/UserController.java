@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable("userId") Long userId){
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId){
 
         var user = userService.getUserById(userId);
 
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Void> updateUser(@PathVariable("userId") Long userId,
+    public ResponseEntity<Void> updateUser(@PathVariable Long userId,
                                            @RequestBody InsertUserDTO insertUserDTO){
 
         userService.updateUser(userId, insertUserDTO);
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteById(@PathVariable("userId") Long userId){
+    public void deleteById(@PathVariable Long userId){
 
         userService.deleteUserById(userId);
     }
