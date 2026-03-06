@@ -1,7 +1,6 @@
 package com.eduardoborges.ecommerce.controller;
 
 import com.eduardoborges.ecommerce.dto.ProductDTO;
-import com.eduardoborges.ecommerce.entity.Product;
 import com.eduardoborges.ecommerce.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

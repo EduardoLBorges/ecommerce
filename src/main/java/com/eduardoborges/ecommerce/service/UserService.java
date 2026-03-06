@@ -3,6 +3,7 @@ package com.eduardoborges.ecommerce.service;
 import com.eduardoborges.ecommerce.dto.InsertUserDTO;
 import com.eduardoborges.ecommerce.dto.UserDTO;
 import com.eduardoborges.ecommerce.entity.User;
+import com.eduardoborges.ecommerce.entity.enums.Role;
 import com.eduardoborges.ecommerce.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class UserService {
                 insertUserDTO.name(),
                 insertUserDTO.email(),
                 insertUserDTO.password(),
-                insertUserDTO.role()
+                Role.USER
         );
 
         var userSaved = userRepository.save(entity);

@@ -9,16 +9,16 @@ import java.util.List;
 
 public record OrderDTO(Long id,
                        Long clientId,
-                       Instant orderDate,
                        List<OrderItemDTO> items,
+                       Instant orderDate,
                        Status status,
                        BigDecimal totalAmount) {
     public OrderDTO(Order order){
         this(
                 order.getId(),
                 order.getClientId().getId(),
-                order.getOrderDate(),
                 order.getItems().stream().map(OrderItemDTO::new).toList(),
+                order.getOrderDate(),
                 order.getStatus(),
                 order.getTotalAmount()
         );
