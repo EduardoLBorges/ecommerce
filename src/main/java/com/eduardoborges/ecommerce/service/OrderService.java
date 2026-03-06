@@ -5,9 +5,7 @@ import com.eduardoborges.ecommerce.dto.OrderItemDTO;
 import com.eduardoborges.ecommerce.entity.Order;
 import com.eduardoborges.ecommerce.entity.OrderItem;
 import com.eduardoborges.ecommerce.entity.Product;
-import com.eduardoborges.ecommerce.entity.User;
 import com.eduardoborges.ecommerce.entity.enums.Status;
-import com.eduardoborges.ecommerce.repository.OrderItemRepository;
 import com.eduardoborges.ecommerce.repository.OrderRepository;
 import com.eduardoborges.ecommerce.repository.ProductRepository;
 import com.eduardoborges.ecommerce.repository.UserRepository;
@@ -23,13 +21,11 @@ import java.util.Optional;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final OrderItemRepository orderItemRepository;
     private final ProductRepository productRepository;
 
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, OrderItemRepository orderItemRepository, ProductRepository productRepository) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.orderItemRepository = orderItemRepository;
         this.productRepository = productRepository;
     }
 
@@ -57,7 +53,7 @@ public class OrderService {
             orderItem.setUnitPrice(product.getPrice());
 
             order.getItems().add(orderItem);
-        };
+        }
 
         order.setOrderDate(Instant.now());
         order.setStatus(Status.PENDING);
@@ -67,7 +63,7 @@ public class OrderService {
             BigDecimal quantity = BigDecimal.valueOf(currentItem.getQuantity());
             BigDecimal price = currentItem.getUnitPrice();
             total = total.add(price.multiply(quantity));
-        };
+        }
 
         order.setTotalAmount(total);
 
